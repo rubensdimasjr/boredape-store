@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -7,6 +6,8 @@
   <title>BoredApe Store</title>
   <!-- Main Style -->
   <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- Reset Style -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
   <!-- Icon Style -->
   <script src="https://kit.fontawesome.com/cf4fb9e680.js" crossorigin="anonymous"></script>
 </head>
