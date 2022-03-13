@@ -1,1 +1,1 @@
-# boredape-store
+# boredape-storee
