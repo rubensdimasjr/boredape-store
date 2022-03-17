@@ -11,6 +11,13 @@ header {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
+nav {
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
 header .logo {
   font-weight: 700;
   color: #ffb528;
@@ -78,7 +85,7 @@ main {
 }
 
 .container {
-  width: 90%;
+  max-width: 1200px;
   margin: auto;
   height: 100vh;
   border: 1px solid #fff;
@@ -123,9 +130,10 @@ main {
 }
 
 #collection .collection-container {
-  width: 90%;
+  max-width: 1200px;
   margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1em;
+  row-gap: 1em;
 }
