@@ -26,19 +26,20 @@
 
   .col {
     width: 100%;
+    text-align: center;
     height: 100%;
   }
 
   .col h1 {
-    text-align: center;
     font-weight: 900;
     font-size: 40px;
     color: #04111d;
+    margin: 0px 1em 0px 1em;
   }
 
   .col p {
-    text-align: center;
     font-size: 1.2em;
+    margin: 1em 1em;
   }
 
   #collection .collection-container {
