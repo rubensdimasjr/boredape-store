@@ -18,19 +18,17 @@
 <body>
 
   <header>
-    <nav>
-      <a href="#" class="logo"><i class="fa-brands fa-ethereum"></i></a>
-      <button class="hamburguer" id="hamburguer">
-        <i class="fas fa-bars"></i>
-      </button>
-      <ul class="nav-ul" id="nav-ul">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Ranking</a></li>
-        <li><a href="#">Sobre</a></li>
-        <li><a href="#">Coleção</a></li>
-        <li><a href="#"><i class="fa-solid fa-circle-user circle-user"></i></a></li>
-      </ul>
-    </nav>
+    <a href="#" class="logo"><i class="fa-brands fa-ethereum"></i></a>
+    <button class="hamburguer">
+      <i id="hamburguer" class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-ul" id="nav-ul">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Ranking</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Coleção</a></li>
+      <li><a href="#"><i class="fa-solid fa-circle-user circle-user"></i></a></li>
+    </ul>
   </header>
 
   <main>

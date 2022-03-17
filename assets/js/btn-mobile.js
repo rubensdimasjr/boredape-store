@@ -1,6 +1,14 @@
-const hamburguer = document.getElementById('hamburguer');
-const navUL = document.getElementById('nav-ul');
+if (document.addEventListener) {
+  document.addEventListener("click", (event) => {
+    const hamburguer = document.getElementById("hamburguer");
+    const navUL = document.getElementById("nav-ul");
 
-hamburguer.addEventListener('click', () => {
-  navUL.classList.toggle('show');
-});
+    let targetElement = event.target || EventTarget;
+
+    if (targetElement === hamburguer) {
+      navUL.classList.toggle("show");
+    } else if (targetElement !== navUL && navUL.classList.contains("show")) {
+      navUL.classList.toggle("show");
+    }
+  });
+}
