@@ -131,9 +131,38 @@ main {
 
 #collection .collection-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 48px auto;
   display: grid;
+  height: 600px;
+  overflow: auto;
+  /*   border: 1px solid #333; */
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1em;
   row-gap: 1em;
+}
+
+#collection .text-container {
+  max-width: 1200px;
+  margin: 48px auto;
+  text-align: center;
+}
+
+#collection .text-container h1 {
+  font-weight: 900;
+  font-size: 36px;
+}
+
+#collection .text-container p {
+  margin: auto;
+  max-width: 600px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* Footer part */
+footer {
+  width: 100%;
+  height: 400px;
+  background: #000;
+  margin-top: 48px;
 }

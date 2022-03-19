@@ -44,13 +44,17 @@
 
   #collection .collection-container {
     grid-template-columns: repeat(3, 1fr);
-    margin: 0px 16px;
+    margin: 48px 16px;
+  }
+
+  #collection .text-container {
+    margin: 48px 16px;
   }
 }
 
 @media screen and (max-width: 575.98px) {
   #collection .collection-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     margin: 0px 16px;
   }
 }
