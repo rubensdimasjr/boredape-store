@@ -29,7 +29,7 @@
             <a class="nav-link active" aria-current="page" href="#">Login Page</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contato</a>
+            <a class="nav-link" href="./contact.php">Contato</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../">Página Inicial</a>
