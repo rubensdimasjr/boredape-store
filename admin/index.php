@@ -29,10 +29,10 @@
             <a class="nav-link active" aria-current="page" href="#">Administração</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="./product-details.php">Produtos</a>
+            <a class="nav-link" href="./product-management.php">Produtos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Sair</a>
+            <a class="nav-link" href="../">Sair</a>
           </li>
         </ul>
       </div>
@@ -40,8 +40,8 @@
   </nav>
 
   <main>
-    <div class="container">
-      <div class="row mt-5 table-responsive">
+    <div class="container my-5">
+      <div class="row table-responsive">
         <h3 class="text-center fw-bold">Lista de Usuários</h3>
         <table class="table mt-3">
           <thead class="table-dark">
@@ -50,6 +50,7 @@
               <th scope="col">Nome</th>
               <th scope="col">E-mail</th>
               <th scope="col">Senha</th>
+              <th scope="col">Ação</th>
             </tr>
           </thead>
           <tbody>
@@ -58,18 +59,30 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
+            <td>
+              <button class="btn btn-secondary">Editar</button>
+              <button class="btn btn-danger">Deletar</button>
+            </td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
+            <td>
+              <button class="btn btn-secondary">Editar</button>
+              <button class="btn btn-danger">Deletar</button>
+            </td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Larry</td>
             <td>Thornton</td>
             <td>@twitter</td>
+            <td>
+              <button class="btn btn-secondary">Editar</button>
+              <button class="btn btn-danger">Deletar</button>
+            </td>
           </tr>
           </tbody>
         </table>

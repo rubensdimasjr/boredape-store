@@ -55,7 +55,9 @@
 
       <div class="box">
         <div class="slide-img">
-          <img src="./assets/images/1.png" alt="1"> 
+          <a href="#">
+            <img src="./assets/images/1.png" alt="1"> 
+          </a>
         </div>
         <div class="detail-box">
           <div class="type">
@@ -63,7 +65,7 @@
             <span>#8958</span>
           </div>
         </div>
-        <div class="detail-box">
+        <div class="detail-box iconWrapper">
           <a href="#" class="icon-ethereum">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>
           </a>
@@ -78,7 +80,9 @@
 
       <div class="box">
         <div class="slide-img">
-          <img src="./assets/images/2.png" alt="2"> 
+          <a href="#">
+            <img src="./assets/images/2.png" alt="2"> 
+          </a>
         </div>
         <div class="detail-box">
           <div class="type">
@@ -86,7 +90,7 @@
             <span>#8754</span>
           </div>
         </div>
-        <div class="detail-box">
+        <div class="detail-box iconWrapper">
           <a href="#" class="icon-ethereum">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>
           </a>
@@ -101,7 +105,9 @@
 
       <div class="box">
         <div class="slide-img">
-          <img src="./assets/images/3.png" alt="3"> 
+          <a href="#">
+            <img src="./assets/images/3.png" alt="3"> 
+          </a>
         </div>
         <div class="detail-box">
           <div class="type">
@@ -109,7 +115,7 @@
             <span>#8828</span>
           </div>
         </div>
-        <div class="detail-box">
+        <div class="detail-box iconWrapper">
           <a href="#" class="icon-ethereum">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>
           </a>
@@ -124,7 +130,9 @@
 
       <div class="box">
         <div class="slide-img">
-          <img src="./assets/images/4.png" alt="4"> 
+          <a href="#">
+            <img src="./assets/images/4.png" alt="4"> 
+          </a>
         </div>
         <div class="detail-box">
           <div class="type">
@@ -132,7 +140,7 @@
             <span>#6652</span>
           </div>
         </div>
-        <div class="detail-box">
+        <div class="detail-box iconWrapper">
           <a href="#" class="icon-ethereum">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>
           </a>
@@ -151,8 +159,8 @@
 
   </footer>
 
+  <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/btn-mobile.js"></script>
-
-  <script src="assets/js/script.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>

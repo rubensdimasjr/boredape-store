@@ -5,6 +5,7 @@
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .box:hover {
@@ -53,6 +54,11 @@ a {
 .likes {
   color: #353840;
   font-weight: 600;
+}
+
+.iconWrapper a.buy {
+  color: "blue";
+  text-decoration: none;
 }
 
 .detail-box .likes {
