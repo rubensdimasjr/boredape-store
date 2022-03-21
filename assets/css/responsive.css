@@ -5,6 +5,18 @@
     flex-direction: column;
   }
 
+  .box {
+    height: 350px;
+  }
+
+  .box .slide-img {
+    height: 200px;
+  }
+
+  .detail-box {
+    padding: 1em 1em 0.5em 1em;
+  }
+
   .nav-ul li {
     margin: 10px 0;
   }

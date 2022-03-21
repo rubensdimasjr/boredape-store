@@ -20,7 +20,9 @@ $.when($.ready).then(function () {
 
     $(boxAtual)
       .find("div.iconWrapper")
-      .prepend($("<a href='#' class='buy'>Compre Agora!</a>"));
+      .prepend(
+        $("<a href='./pages/product-details.php' class='buy'>Compre Agora!</a>")
+      );
   });
 
   $(".box").on("mouseleave", (e) => {
