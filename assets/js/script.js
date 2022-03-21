@@ -21,7 +21,9 @@ $.when($.ready).then(function () {
     $(boxAtual)
       .find("div.iconWrapper")
       .prepend(
-        $("<a href='./pages/product-details.php' class='buy'>Compre Agora!</a>")
+        $(
+          "<a href='./pages/product-details.html' class='buy'>Compre Agora!</a>"
+        )
       );
   });
 
