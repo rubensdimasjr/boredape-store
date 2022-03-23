@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8">
@@ -16,7 +17,6 @@
 
   </head>
   <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand"><i class="fa-brands fa-ethereum text-warning"></i></a>
@@ -48,19 +48,19 @@
                 <h3 class="mt-2 text-center">Add Novo Produto</h3>
               </div>
               <div class="card-body">
-                <form>
+                <form action="" method="post" enctype="multipart/form">
                   <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto">
+                    <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" required>
                   </div>
                   <div class="mb-3">
-                    <input type="number" class="form-control" placeholder="Preço do Produto" name="preco_produto">
+                    <input type="number" class="form-control" placeholder="Preço do Produto" name="preco_produto" required>
                   </div>
                   <div class="mb-4">
                     <label for="imagem_produto" class="form-label">Imagem Produto</label>
-                    <input type="file" class="form-control" name="imagem_produto">
+                    <input type="file" class="form-control" name="imagem_produto" accept="image/jpeg, image/png, image/jpg" required>
                   </div>
                   <div class="mb-3 text-center">
-                    <input type="submit" class="btn btn-success col-6" value="Add Produto">
+                    <input type="submit" class="btn btn-success col-6" value="Add Produto" name="add_product">
                   </div>
                 </form>
               </div>
@@ -71,39 +71,19 @@
           <table class="table mt-3">
             <thead class="table-dark">
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Imagem Produto</th>
+                <th scope="col">#</th>
                 <th scope="col">Nome Produto</th>
                 <th scope="col">Preço Produto</th>
                 <th scope="col">Ação</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle">
             <tr>
+              <td><img src="../assets/images/1.png" class="img-fluid rounded-circle" alt="BoredApe-1" width="50" height="50"></td>
               <th scope="row">1</th>
-              <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
-              <td>
-                <button class="btn btn-secondary my-1">Editar</button>
-                <button class="btn btn-danger">Deletar</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>
-                <button class="btn btn-secondary my-1">Editar</button>
-                <button class="btn btn-danger">Deletar</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>Thornton</td>
-              <td>@twitter</td>
               <td>
                 <button class="btn btn-secondary my-1">Editar</button>
                 <button class="btn btn-danger">Deletar</button>

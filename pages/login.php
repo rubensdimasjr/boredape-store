@@ -1,3 +1,37 @@
+<?php 
+  @include '../config/config.php';
+
+  session_start();
+
+  if(isset($_POST['entra-login'])){
+
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $sql = "SELECT * FROM user WHERE email='".$email."' AND senha='".$senha."'";
+    $resultado = mysqli_query($conn, $sql);
+
+    $row = mysqli_fetch_array($resultado);
+    if($row['tipo_usuario']=="user"){
+      $_SESSION['nome'] = $row['nome'];
+      $_SESSION['email'] = $row['email'];
+      $_SESSION['senha'] = $row['senha'];
+      header("location: ../");
+    }
+    else if($row['tipo_usuario']=="admin"){
+      $_SESSION['email'] = $row['email'];
+      header("location: ../admin/");
+    }
+    else{
+      echo '<div class="alert alert-danger alert-dismissible" role="alert">Email ou senha estão incorretos!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    }
+  }
+
+  if(isset($_GET['error'])){
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">Você precisa estar logado para acessar essa página!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+  }
+?>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8">
@@ -45,17 +79,17 @@
         <div class="col-xs-12 col-md-8 col-lg-5 mx-auto">
           <div class="card">
             <div class="card-body">
-              <form>
+              <form action="" method="post">
                 <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com" required>
                 </div>
                 <div class="mb-3">
                   <label for="senha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" name="senha" id="senha">
+                  <input type="password" class="form-control" name="senha" id="senha" required>
                 </div>
                 <div class="mb-3 text-center">
-                  <input type="submit" class="btn btn-primary col-6" value="Entrar">
+                  <input type="submit" class="btn btn-primary col-6" value="Entrar" name="entra-login">
                 </div>
               </form>
             </div>

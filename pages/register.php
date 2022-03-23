@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8">
@@ -45,7 +46,7 @@
         <div class="col-xs-12 col-md-8 col-lg-5 mx-auto">
           <div class="card">
             <div class="card-body">
-              <form>
+              <form action="" method="post">
                 <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com">
