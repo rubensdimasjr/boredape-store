@@ -1,3 +1,13 @@
+<?php 
+  if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
+    session_start();
+  }
+
+  print_r($_SESSION);
+  if(empty($_SESSION)):
+    echo "array vazio";
+  endif;
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,7 +27,6 @@
   <script src="https://kit.fontawesome.com/cf4fb9e680.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
   <header>
     <a href="#" class="logo"><i class="fa-brands fa-ethereum"></i></a>
     <button class="hamburguer">
@@ -28,7 +37,18 @@
       <li><a href="#">Ranking</a></li>
       <li><a href="./pages/contact.php">Contato</a></li>
       <li><a href="#">Coleção</a></li>
-      <li><a href="./pages/login.php">Entrar/Cadastrar</i></a></li>
+      <li>
+      <?php if(!empty($_SESSION)): ?>
+        <a href="#">Olá, <?php echo $_SESSION['nome'] ?></a>
+      <?php else: ?>
+        <a href="./pages/login.php">Entrar/Cadastrar</a>
+      <?php endif; ?>
+      </li>
+      <?php if(!empty($_SESSION)): ?>
+      <li>
+        <a href="admin/logout.php">Sair</a>
+      </li>
+      <?php endif; ?>
     </ul>
   </header>
 

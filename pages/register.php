@@ -1,3 +1,10 @@
+<?php 
+  if(!empty($_SESSION) && isset($_SESSION['tipo_usuario']) == "admin"){
+    header('location: ../admin/');
+  }else if(!empty($_SESSION) && !isset($_SESSION['tipo_usuario'])){
+    header('location: ../');
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>

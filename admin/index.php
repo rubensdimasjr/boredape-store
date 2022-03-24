@@ -1,10 +1,14 @@
 <?php
-  session_start();
+  if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
+    session_start();
+  }
 
-  if(!isset($_SESSION['email'])){
-    header("location: ../pages/login.php?error=true");
+  if(!isset($_SESSION['tipo_usuario'])){
+    header("location: ../pages/error-page.php?error=true");
     exit;
   }
+
+  print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,7 +45,7 @@
             <a class="nav-link" href="./product-management.php">Produtos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../">Sair</a>
+            <a class="nav-link" href="./logout.php">Sair</a>
           </li>
         </ul>
       </div>

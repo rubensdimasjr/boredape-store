@@ -1,7 +1,15 @@
 <?php 
-  @include '../config/config.php';
+  include ('../config/config.php');
 
-  session_start();
+  if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
+    session_start();
+  }
+
+  if(!empty($_SESSION) && isset($_SESSION['tipo_usuario']) == "admin"){
+    header('location: ../admin/');
+  }else if(!empty($_SESSION) && !isset($_SESSION['tipo_usuario'])){
+    header('location: ../');
+  }
 
   if(isset($_POST['entra-login'])){
 
@@ -14,22 +22,19 @@
     $row = mysqli_fetch_array($resultado);
     if($row['tipo_usuario']=="user"){
       $_SESSION['nome'] = $row['nome'];
-      $_SESSION['email'] = $row['email'];
-      $_SESSION['senha'] = $row['senha'];
       header("location: ../");
     }
     else if($row['tipo_usuario']=="admin"){
-      $_SESSION['email'] = $row['email'];
+      $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+      $_SESSION['nome'] = $row['nome'];
       header("location: ../admin/");
     }
     else{
       echo '<div class="alert alert-danger alert-dismissible" role="alert">Email ou senha estão incorretos!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     }
   }
-
-  if(isset($_GET['error'])){
-    echo '<div class="alert alert-danger alert-dismissible" role="alert">Você precisa estar logado para acessar essa página!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-  }
+  
+  print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

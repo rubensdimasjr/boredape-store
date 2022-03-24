@@ -1,3 +1,13 @@
+<?php
+  if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
+    session_start();
+  }
+
+  if(!isset($_SESSION['email'])){
+    header("location: ../pages/error-page.php?error=true");
+    exit;
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
