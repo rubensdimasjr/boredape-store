@@ -34,7 +34,7 @@
     }
   }
   
-  print_r($_SESSION);
+/*   print_r($_SESSION); */
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -3,10 +3,8 @@
     session_start();
   }
 
-  print_r($_SESSION);
-  if(empty($_SESSION)):
-    echo "array vazio";
-  endif;
+/*   print_r($_SESSION); */
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
