@@ -1,4 +1,7 @@
 <?php
+
+  include ("../config/config.php");
+
   if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
     session_start();
   }
@@ -9,6 +12,9 @@
   }
 
 /*   print_r($_SESSION); */
+  $sql = "SELECT * FROM user";
+  $resultado = mysqli_query($conn, $sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -67,36 +73,18 @@
             </tr>
           </thead>
           <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <button class="btn btn-secondary">Editar</button>
-              <button class="btn btn-danger">Deletar</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-              <button class="btn btn-secondary">Editar</button>
-              <button class="btn btn-danger">Deletar</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>Thornton</td>
-            <td>@twitter</td>
-            <td>
-              <button class="btn btn-secondary">Editar</button>
-              <button class="btn btn-danger">Deletar</button>
-            </td>
-          </tr>
+            <?php while($row = $resultado->fetch_array()) { ?>
+            <tr>
+              <th scope="row"><?php echo $row['id']; ?></th>
+              <td><?php echo $row['nome']; ?></td>
+              <td><?php echo $row['email']; ?></td>
+              <td><?php echo $row['senha']; ?></td>
+              <td>
+                <button class="btn btn-secondary my-1">Editar</button>
+                <button class="btn btn-danger">Deletar</button>
+              </td>
+            </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
