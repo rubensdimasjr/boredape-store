@@ -15,6 +15,24 @@
   $sql = "SELECT * FROM user";
   $resultado = mysqli_query($conn, $sql);
 
+  if(isset($_POST['edit_user'])){
+    $id = $_POST['id'];
+    $email = $_POST['email'];
+    $nome = $_POST['nome'];
+    $senha = $_POST['senha'];
+
+    $sql_edit = "UPDATE user SET email='$email', nome='$nome', senha='$senha' WHERE id=$id";
+    $atualizado = mysqli_query($conn, $sql_edit);
+
+    if($atualizado)
+      header('location: index.php?edit=true');
+    else
+      echo "Usuário não foi atualizado!";
+  }
+
+  if(isset($_GET['edit']))
+    echo '<div class="alert alert-success alert-dismissible" role="alert">Usuário atualizado com sucesso!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
   if(isset($_POST['delete_user'])){
     $id = $_POST['id'];
 
@@ -95,16 +113,52 @@
               <td><?php echo $row['email']; ?></td>
               <td><?php echo $row['senha']; ?></td>
               <td>
-                <button type="button" class="btn btn-secondary my-1">Editar</button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row['id']; ?>">
-                  Deletar
+                <!-- Button Edit -->
+                <button type="button" class="btn btn-secondary m-1" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $row['id']; ?>">
+                  Editar
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="editModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Deletar usuário #<?php echo $row['id']; ?></h5>
+                        <h5 class="modal-title" id="editModalLabel">Editar usuário #<?php echo $row['id']; ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="post">
+                          <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                          <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="text" name="email" id="email" class="form-control" value="<?php echo $row['email']; ?>" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" name="nome" id="nome" class="form-control" value="<?php echo $row['nome']; ?>" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" name="senha" id="senha" class="form-control" value="<?php echo $row['senha']; ?>" required>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <input type="submit" class="btn btn-primary" name="edit_user" value="Atualizar">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Button Delete -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['id']; ?>">
+                  Deletar
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Deletar usuário #<?php echo $row['id']; ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
@@ -120,6 +174,9 @@
                     </div>
                   </div>
                 </div>
+
+
+
               </td>
             </tr>
             <?php } ?>
