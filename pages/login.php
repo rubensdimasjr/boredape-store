@@ -35,6 +35,10 @@
   }
   
 /*   print_r($_SESSION); */
+
+  if(isset($_GET['success']))
+    echo '<div class="alert alert-success alert-dismissible" role="alert">Usuário cadastrado com sucesso! Faça o login para iniciar<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+  
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
