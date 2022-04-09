@@ -1,4 +1,6 @@
 <?php
+  include ("../config/config.php");
+
   if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
     session_start();
   }
@@ -10,6 +12,41 @@
 
 /*   print_r($_SESSION); */
 
+  if(isset($_POST['add_product'])){
+
+    $nome_produto = $_POST['nome_produto'];
+    $preco_produto = $_POST['preco_produto'];
+    $arquivo = $_FILES['arquivo_img'];
+    $favoritos = $_POST['favoritos'];
+    
+    /* working with image */
+    $pasta = "arquivos/";
+    $nomeDoArquivo = $arquivo['name'];
+    $novoNomeDoArquivo = uniqid();
+    $extensao = strtolower(pathinfo($nomeDoArquivo,PATHINFO_EXTENSION));
+
+    /* upload image */
+    if($extensao != 'jpg' && $extensao != 'png')
+      die("Tipo de arquivo não aceito!");
+
+    $adicionadaImg = move_uploaded_file($arquivo['tmp_name'], $pasta . $novoNomeDoArquivo . "." . $extensao);
+
+    if($adicionadaImg){
+      $link_arquivo = "$novoNomeDoArquivo".".$extensao";
+
+      $sql = "INSERT INTO produtos (nome_produto, preco_produto, link_arquivo, favoritos) VALUES ('$nome_produto', '$preco_produto', '$link_arquivo', $favoritos)";
+      
+      $adicionadoProduto = mysqli_query($conn, $sql);
+      if($adicionadoProduto)
+      echo '<div class="alert alert-success alert-dismissible" role="alert">Produto enviado com sucesso!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    }
+    else{
+      echo "Falha ao enviar produto!";
+    }
+  }
+
+  $sql = "SELECT * FROM produtos";
+  $resultado = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -61,17 +98,18 @@
                 <h3 class="mt-2 text-center">Add Novo Produto</h3>
               </div>
               <div class="card-body">
-                <form action="" method="post" enctype="multipart/form">
+                <form enctype="multipart/form-data" method="post">
                   <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" required>
                   </div>
                   <div class="mb-3">
-                    <input type="number" class="form-control" placeholder="Preço do Produto" name="preco_produto" required>
+                    <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" required>
                   </div>
                   <div class="mb-4">
                     <label for="imagem_produto" class="form-label">Imagem Produto</label>
-                    <input type="file" class="form-control" name="imagem_produto" accept="image/jpeg, image/png, image/jpg" required>
+                    <input type="file" id="imagem_produto" class="form-control" name="arquivo_img" required>
                   </div>
+                  <input type="hidden" name="favoritos" value="0">
                   <div class="mb-3 text-center">
                     <input type="submit" class="btn btn-success col-6" value="Add Produto" name="add_product">
                   </div>
@@ -92,16 +130,76 @@
               </tr>
             </thead>
             <tbody class="align-middle">
+            <?php while($row = $resultado->fetch_array()) { ?>
             <tr>
-              <td><img src="../assets/images/1.png" class="img-fluid rounded-circle" alt="BoredApe-1" width="50" height="50"></td>
-              <th scope="row">1</th>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td><img src="./arquivos/<?php echo $row['link_arquivo']; ?>" class="img-fluid rounded-circle" alt="BoredApe-<?php echo $row['id_produto']; ?>" width="50" height="50"></td>
+              <th scope="row"><?php echo $row['id_produto']; ?></th>
+              <td><?php echo $row['nome_produto']; ?></td>
+              <td><?php echo $row['preco_produto']; ?></td>
               <td>
-                <button class="btn btn-secondary my-1">Editar</button>
-                <button class="btn btn-danger">Deletar</button>
+                <!-- Button Edit -->
+                <button type="button" class="btn btn-secondary m-1" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $row['id_produto']; ?>">
+                  Editar
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="editModal<?php echo $row['id_produto']; ?>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Editar produto #<?php echo $row['id_produto']; ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form enctype="multipart/form-data" method="post">
+                          <input type="hidden" name="id_produto" value="<?php echo $row['id_produto']; ?>">
+                          <div class="mb-3">
+                            <input type="text" id="nome_produto" class="form-control" placeholder="Nome do Produto" name="nome_produto" value="<?php echo $row['nome_produto']; ?>" required>
+                          </div>
+                          <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" value="<?php echo $row['preco_produto']; ?>" required>
+                          </div>
+                          <div class="mb-4">
+                            <label for="imagem_produto" class="form-label">Imagem Produto</label>
+                            <input type="file" id="imagem_produto" class="form-control" name="arquivo_img" required>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <input type="submit" class="btn btn-primary" name="edit_produto" value="Atualizar">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Button Delete -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['id_produto']; ?>">
+                  Deletar
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal<?php echo $row['id_produto']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Deletar produto #<?php echo $row['id_produto']; ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Você tem certeza que deseja apagar esse produto?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <form method="post">
+                          <input type="hidden" name="id" value="<?php echo $row['id_produto']; ?>">
+                          <input type="submit" class="btn btn-primary" name="delete_produto" value="Confirmar">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </td>
             </tr>
+            <?php } ?>
             </tbody>
           </table>
         </div>
