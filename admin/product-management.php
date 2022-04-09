@@ -10,8 +10,6 @@
     exit;
   }
 
-/*   print_r($_SESSION); */
-
   if(isset($_POST['add_product'])){
 
     $nome_produto = $_POST['nome_produto'];
@@ -33,8 +31,9 @@
 
     if($adicionadaImg){
       $link_arquivo = "$novoNomeDoArquivo".".$extensao";
+      $preco = str_replace([','],'.', $preco_produto);
 
-      $sql = "INSERT INTO produtos (nome_produto, preco_produto, link_arquivo, favoritos) VALUES ('$nome_produto', '$preco_produto', '$link_arquivo', $favoritos)";
+      $sql = "INSERT INTO produtos (nome_produto, preco_produto, link_arquivo, favoritos) VALUES ('$nome_produto', '$preco', '$link_arquivo', $favoritos)";
       
       $adicionadoProduto = mysqli_query($conn, $sql);
       if($adicionadoProduto)
@@ -47,6 +46,61 @@
 
   $sql = "SELECT * FROM produtos";
   $resultado = mysqli_query($conn, $sql);
+
+  if(isset($_POST['edit_produto'])){
+    $old_file = $_POST['old_img'];
+    $produtoDeletado = unlink("arquivos/$old_file");
+
+    if($produtoDeletado){
+      $id_produto = $_POST['id_produto'];
+      $name_produto = $_POST['name_produto'];
+      $price_produto = $_POST['price_produto'];
+      $new_file = $_FILES['new_img'];
+
+      $local = "arquivos/";
+      $nameArquive = $new_file['name'];
+      $newName = uniqid();
+      $extension = strtolower(pathinfo($nameArquive,PATHINFO_EXTENSION));
+  
+      $produtoEditado = move_uploaded_file($new_file['tmp_name'], $local . $newName . "." . $extension);
+
+      if($produtoEditado){
+        $new_link = "$newName".".$extension";
+        $price = str_replace([','],'.', $price_produto);
+      
+        $sql_edit = "UPDATE produtos SET nome_produto='$name_produto', preco_produto='$price', link_arquivo='$new_link' WHERE id_produto=$id_produto";
+
+        $atualizado = mysqli_query($conn, $sql_edit);
+
+        if($atualizado)
+          header('location: product-management.php?edit=true');
+        else
+          echo "Produto não foi atualizado!";
+      }
+    }
+  }
+
+  if(isset($_GET['edit']))
+    echo '<div class="alert alert-success alert-dismissible" role="alert">Produto atualizado com sucesso!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+  if(isset($_POST['delete_produto'])){
+    $file = $_POST['img'];
+    $deletadaImagem = unlink("arquivos/$file");
+
+    if($deletadaImagem){
+      $id = $_POST['id'];
+      $sql_delete = "DELETE FROM produtos WHERE id_produto=$id";
+      $deletadoProduto = mysqli_query($conn, $sql_delete);
+  
+      if($deletadoProduto)
+        header('location: product-management.php?delete=true');
+      else
+        echo "Produto não foi deletado!";
+    }
+  }
+
+  if(isset($_GET['delete']))
+    echo '<div class="alert alert-success alert-dismissible" role="alert">Produto deletado com sucesso!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -153,15 +207,16 @@
                         <form enctype="multipart/form-data" method="post">
                           <input type="hidden" name="id_produto" value="<?php echo $row['id_produto']; ?>">
                           <div class="mb-3">
-                            <input type="text" id="nome_produto" class="form-control" placeholder="Nome do Produto" name="nome_produto" value="<?php echo $row['nome_produto']; ?>" required>
+                            <input type="text" id="nome_produto" class="form-control" placeholder="Nome do Produto" name="name_produto" value="<?php echo $row['nome_produto']; ?>" required>
                           </div>
                           <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" value="<?php echo $row['preco_produto']; ?>" required>
+                            <input type="text" class="form-control" placeholder="Preço do Produto" name="price_produto" value="<?php echo $row['preco_produto']; ?>" required>
                           </div>
                           <div class="mb-4">
                             <label for="imagem_produto" class="form-label">Imagem Produto</label>
-                            <input type="file" id="imagem_produto" class="form-control" name="arquivo_img" required>
+                            <input type="file" id="imagem_produto" class="form-control" name="new_img" required>
                           </div>
+                          <input type="hidden" name="old_img" value="<?php echo $row['link_arquivo']; ?>">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -190,6 +245,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         <form method="post">
                           <input type="hidden" name="id" value="<?php echo $row['id_produto']; ?>">
+                          <input type="hidden" name="img" value="<?php echo $row['link_arquivo']; ?>">
                           <input type="submit" class="btn btn-primary" name="delete_produto" value="Confirmar">
                         </form>
                       </div>
