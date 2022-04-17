@@ -1,43 +1,18 @@
 <?php 
-  include ('../config/config.php');
-
+  require_once '../config/config.php';
+  require_once '../funcoes/sessao/verificaSessao.php';
+  
   if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
     session_start();
   }
 
-  if(!empty($_SESSION) && isset($_SESSION['tipo_usuario']) == "admin"){
-    header('location: ../admin/');
-  }else if(!empty($_SESSION) && !isset($_SESSION['tipo_usuario'])){
-    header('location: ../');
-  }
-
-  if(isset($_POST['entra-login'])){
-
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-
-    $sql = "SELECT * FROM user WHERE email='".$email."' AND senha='".$senha."'";
-    $resultado = mysqli_query($conn, $sql);
-
-    $row = mysqli_fetch_array($resultado);
-    if($row['tipo_usuario']=="user"){
-      $_SESSION['nome'] = $row['nome'];
-      header("location: ../");
-    }
-    else if($row['tipo_usuario']=="admin"){
-      $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
-      $_SESSION['nome'] = $row['nome'];
-      header("location: ../admin/");
-    }
-    else{
-      echo '<div class="alert alert-danger alert-dismissible" role="alert">Email ou senha estão incorretos!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-    }
-  }
+/*   print_r($_SESSION);  */
   
-/*   print_r($_SESSION); */
-
   if(isset($_GET['success']))
     echo '<div class="alert alert-success alert-dismissible" role="alert">Usuário cadastrado com sucesso! Faça o login para iniciar<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+  if(isset($_GET['error']))
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">Email ou senha estão incorretos!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
   
 ?>
 <!DOCTYPE html>
@@ -88,7 +63,7 @@
         <div class="col-xs-12 col-md-8 col-lg-5 mx-auto">
           <div class="card">
             <div class="card-body">
-              <form action="" method="post">
+              <form action="../funcoes/usuario/realizaLogin.php" method="post">
                 <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com" required>

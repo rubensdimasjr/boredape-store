@@ -1,28 +1,11 @@
 <?php 
 
   require_once '../config/config.php';
+  require_once '../funcoes/sessao/verificaSessao.php';
 
-  if(!empty($_SESSION) && isset($_SESSION['tipo_usuario']) == "admin"){
-    header('location: ../admin/');
-  }else if(!empty($_SESSION) && !isset($_SESSION['tipo_usuario'])){
-    header('location: ../');
-  }
-
-  if(isset($_POST['cadastra_user'])){
-    $email = $_POST['email'];
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
+  if(isset($_GET['success']))
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">Usuário não foi cadastrado!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
   
-    $sql = "INSERT INTO user (email,nome,senha) VALUES ('$email', '$nome', '$senha')";
-    $inserido = mysqli_query($conn, $sql);
-
-    if($inserido){
-      header('location: ./login.php?success=true');
-
-    }else{
-      echo '<div class="alert alert-danger alert-dismissible" role="alert">Usuário não foi cadastrado!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-    }
-  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,7 +55,7 @@
         <div class="col-xs-12 col-md-8 col-lg-5 mx-auto">
           <div class="card">
             <div class="card-body">
-              <form method="post">
+              <form action="../funcoes/usuario/addUsuario.php" method="post">
                 <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com">
