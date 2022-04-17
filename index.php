@@ -56,7 +56,7 @@
               <a class="nav-link" href="#">Coleção</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./pages/contact.html">Contato</a>
+              <a class="nav-link" href="./pages/contact.php">Contato</a>
             </li>
             <li class="nav-item">
             <?php if(!empty($_SESSION)): ?>
