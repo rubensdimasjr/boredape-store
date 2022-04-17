@@ -13,6 +13,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BoredApe Store</title>
+  <!-- BootStrap Style -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- Main Style -->
   <link rel="stylesheet" href="./assets/css/style.css">
   <!-- Reset Style -->
@@ -25,45 +27,68 @@
   <script src="https://kit.fontawesome.com/cf4fb9e680.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
   <header>
-    <a href="#" class="logo"><i class="fa-brands fa-ethereum"></i></a>
-    <button class="hamburguer">
-      <i id="hamburguer" class="fas fa-bars"></i>
-    </button>
-    <ul class="nav-ul" id="nav-ul">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Ranking</a></li>
-      <li><a href="./pages/contact.php">Contato</a></li>
-      <li><a href="#">Coleção</a></li>
-      <li>
-      <?php if(!empty($_SESSION)): ?>
-        <a href="#">Olá, <?php echo $_SESSION['nome'] ?></a>
-      <?php else: ?>
-        <a href="./pages/login.php">Entrar/Cadastrar</a>
-      <?php endif; ?>
-      </li>
-      <?php if(!empty($_SESSION)): ?>
-      <li>
-        <a href="admin/logout.php">Sair</a>
-      </li>
-      <?php endif; ?>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top menu">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fa-brands fa-ethereum text-warning fs-2"></i>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Coleção</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/contact.html">Contato</a>
+            </li>
+            <li class="nav-item">
+            <?php if(!empty($_SESSION)): ?>
+              <a class="nav-link" href="#">Olá, <?php echo $_SESSION['nome'] ?></a>
+            <?php else: ?>
+              <a class="nav-link" href="./pages/login.php">Entrar/Cadastrar</a>
+            <?php endif; ?>
+            </li>
+            <?php if(!empty($_SESSION)): ?>
+            <li class="nav-item">
+              <a class="nav-link" href="admin/logout.php">Sair</a>
+            </li>
+            <?php endif; ?>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <div class="container">
-      <div class="col">
+    <div class="container h-100 d-flex hero">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-xs-12 col-md-6 titulo">
           <h1>Explore e compre NFTs excepcionais.</h1>
           <p>Criado com a última tendência de design e codificado com todas as abordagens modernas.</p>
-      </div>
-      <div class="col">
-        <img src="./assets/images/photo1.svg" alt="Work in Group">
+        </div>
+        <div class="col-xs-12 col-md-6 titulo mt-md-0 mt-5">
+          <img src="./assets/images/photo1.svg" class="img-fluid" alt="Work in Group">
+        </div>
       </div>
     </div>
   </main>
-
-  <section id="about">
-  </section>
 
   <section id="collection">
     <div class="text-container">
@@ -177,7 +202,9 @@
   <footer>
 
   </footer>
-
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/btn-mobile.js"></script>
   <script src="./assets/js/script.js"></script>
