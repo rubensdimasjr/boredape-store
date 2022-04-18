@@ -21,6 +21,13 @@
     ></script>
 
     <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@400;500&display=swap');
+
+      .font_meta{
+        font-family: 'Akshar', sans-serif;
+      }
+
       nav {
         box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
       }
@@ -143,13 +150,43 @@
               <div class="price-content d-flex">
                 <p class="fw-bold" style="font-size: 32px">
                   <i class="fa-brands fa-ethereum" style="font-size: 24px"></i>
-                  0,05
-                  <span style="font-size: 16px">($142,67)</span>
+                  0.05
+                  <span style="font-size: 16px">($150,67)</span>
                 </p>
               </div>
-              <button class="btn btn-primary col-xs-10 col-md-6 col-lg-4">
+              <a class="btn btn-primary col-xs-10 col-md-6 col-lg-4" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 Compre Agora
-              </button>
+              </a>
+              <!-- Collapse MetaMask -->
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasExampleLabel">Minha Carteira </h5>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <div>
+                    MetaMask é uma carteira de criptomoeda de software usada para interagir com o blockchain Ethereum. Ele permite que os usuários acessem sua carteira Ethereum por meio de uma extensão do navegador ou aplicativo móvel
+                  </div>
+                  <div class="col-2 mt-3 mx-auto">
+                    <img src="../assets/images/MetaMask_Fox.svg.png" class="img-fluid" alt="MetaLogo">
+                  </div>
+                  <p class="col text-center font_meta fs-5">METAMASK</p>
+                  <div class="col pb-3 border-bottom my-5">
+                    <div class="row">
+                      <p class="col">Total</p>
+                      <div class="col">
+                        <span><i class="fab fa-ethereum fs-5 me-1"></i>0.05</span>
+                        <span class="row text-muted mt-2">($150,67)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3 text-center">
+                    <a href="#" class="btn btn-primary">
+                      Confirmar Compra
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
