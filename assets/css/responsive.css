@@ -1,58 +1,28 @@
 @media screen and (max-width: 820px) {
-  .nav-ul {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-  }
 
-  .box {
-    height: 350px;
-  }
-
-  .box .slide-img {
-    height: 200px;
-  }
-
-  .detail-box {
-    padding: 1em 1em 0.5em 1em;
-  }
-
-  .nav-ul li {
-    margin: 10px 0;
-  }
-
-  .nav-ul.show {
-    display: flex;
-  }
-
-  header button.hamburguer {
-    display: block;
-  }
-
-  .container {
+  .hero{
     min-width: 90%;
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 15vh;
   }
 
-  .col {
+  .titulo {
     width: 100%;
     text-align: center;
-    height: 100%;
   }
 
-  .col h1 {
+  .titulo h1 {
     font-weight: 900;
     font-size: 40px;
     color: #04111d;
     margin: 0px 1em 0px 1em;
   }
 
-  .col p {
+  .titulo p {
     font-size: 1.2em;
     margin: 1em 1em;
-  }
+  } 
 
   #collection .collection-container {
     grid-template-columns: repeat(3, 1fr);
