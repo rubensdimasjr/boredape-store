@@ -9,7 +9,7 @@
 <li><a href="https://jquery.com/">Javascript, jQuery</a></li>
 </ul>
 
-<h3 id="#feat">🪶 Features</h3>
+<h3 id="#feat">⛲ Features</h3>
 
 - [x] Cadastro de Usuário
 - [x] Cadastro de Produtos
