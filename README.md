@@ -29,7 +29,7 @@ Precisa estar instalado no seu Ambiente: [Git](https://git-scm.com), [Node.js](h
 $ git clone <https://github.com/rubensdimasjr/boredape-store>
 ```
 
-### 🇦🇱 Autor
+### ✨ Autor
 
 <a href="https://github.com/rubensdimasjr">
 <img src="https://i.imgur.com/ZC8xQWi.jpg" width="100" alt="Rubens" style="border-radius:50%">
