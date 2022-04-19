@@ -35,7 +35,7 @@ $ git clone <https://github.com/rubensdimasjr/boredape-store>
 <img src="https://i.imgur.com/ZC8xQWi.jpg" width="100" alt="Rubens" style="border-radius:50%">
 </a>
 
-Feito por <a href="https://github.com/rubensdimasjr"><b>Rubens Matias</b></a> 🚀 Entre em contato!
+Feito por <a href="https://github.com/rubensdimasjr"><b>Rubens Matias</b></a> 🚀
 
 [![Linkedin Badge](https://img.shields.io/badge/-Rubens-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/rubensdimasjr/)](https://www.linkedin.com/in/rubensdimasjr/) 
 [![Gmail Badge](https://img.shields.io/badge/-contato.rubensdimas@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:contato.rubensdimas@gmail.com)](mailto:contato.rubensdimas@gmail.com)
